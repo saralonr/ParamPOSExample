@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Anasayfa";
+}
+
+
+<div class="clearfix" style="margin-top:50px;margin-bottom:50px;"></div>
+<div class="jumbotron">
+    <h1>ParamPOS</h1>
+    <h3>ParamPOS Sanal POS Entegrasyon Örnek Projesi</h3>
+    <div class="clearfix" style="margin-top:10px;"></div>
+    <ul>
+        <li>Bu projede ParamPOS(eski adıyla TurkPOS) sanal pos entegrasyonu örneği gösterilmiştir. </li>
+        <li>ParamPOS sanal pos entegrasyonu yapmak zorunda kaldığım bir projede ParamPOS'un <a target="_blank" href=" http://dev.param.com.tr/tr/api/odeme">API dokümantasyonunu</a> ve verdiği .NET proje örneğini beğenmediğim,tam anlamıyla açıklayıcı olmadığını düşündüğüm için, bu projeyi oluşturmaya karar verdim.</li>
+        <li>Projenizde kullanmak için bu örnek projeden işinize yarayacak kısımları dilediğinizce alabilirsiniz.</li>
+        <li>Elimden geldiğinde satır aralarında açıklama yapmaya çalıştım. Yanlış yazdığım, yanlış bildiğim yerler varsa ise şimdiden özür diler,yanlış olan yerleri düzeltmenizi rica ederim.</li>
+    </ul>
+</div>
+
+<div class="row">
+    @if (Request.QueryString["Status"] == "Success")
+    {
+        <div class="alert alert-success alert-dismissible" style="margin-top:18px;">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+            <strong>Başarılı!</strong> <span data-result="true">Ödeme işlemi başarılı!</span>
+        </div>
+    }
+    else if (Request.QueryString["Status"] == "NoLimit")
+    {
+        <div class="alert alert-danger alert-dismissible" style="margin-top:18px;">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+            <strong>Hata!</strong> <span data-result="true">Ödeme işlemi limit yetersiz olduğu için reddedildi!</span>
+        </div>
+    }
+    else if (Request.QueryString["Status"] == "PayError")
+    {
+        <div class="alert alert-danger alert-dismissible" style="margin-top:18px;">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+            <strong>Hata!</strong> <span data-result="true">Ödeme işlemi sırasında bir hata meydana geldi. Lütfen tekrar deneyiniz.</span>
+        </div>
+    }
+    else if (Request.QueryString["Status"] == "ErrorException")
+    {
+        <div class="alert alert-danger alert-dismissible" style="margin-top:18px;">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+            <strong>Hata!</strong> <span data-result="true">Ödeme işlemi sırasında bir hata meydana geldi. Lütfen daha sonra tekrar deneyiniz.</span>
+        </div>
+    }
+
+</div>

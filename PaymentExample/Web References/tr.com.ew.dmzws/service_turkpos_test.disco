@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="http://dmzws.ew.com.tr/turkpos.ws/service_turkpos_test.asmx?wsdl" docRef="http://dmzws.ew.com.tr/turkpos.ws/service_turkpos_test.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://dmzws.ew.com.tr/turkpos.ws/service_turkpos_test.asmx" xmlns:q1="https://turkpos.com.tr/" binding="q1:TurkPos_x005F_x0020_WS_x005F_x0020_TESTSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://dmzws.ew.com.tr/turkpos.ws/service_turkpos_test.asmx" xmlns:q2="https://turkpos.com.tr/" binding="q2:TurkPos_x005F_x0020_WS_x005F_x0020_TESTSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

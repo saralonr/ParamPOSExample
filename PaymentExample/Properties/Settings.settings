@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PaymentExample.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="PaymentExample_tr_com_ew_dmzws_TurkPos_x0020_WS_x0020_TEST" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://dmzws.ew.com.tr/turkpos.ws/service_turkpos_test.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

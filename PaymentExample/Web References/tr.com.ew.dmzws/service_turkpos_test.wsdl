@@ -1,0 +1,841 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="https://turkpos.com.tr/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="https://turkpos.com.tr/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">TURK Elektronik Para A.Ş.</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="https://turkpos.com.tr/">
+      <s:element name="BIN_SanalPos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="G" type="tns:ST_WS_Guvenlik" />
+            <s:element minOccurs="0" maxOccurs="1" name="BIN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ST_WS_Guvenlik">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CLIENT_CODE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CLIENT_USERNAME" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CLIENT_PASSWORD" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="BIN_SanalPosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="BIN_SanalPosResult" type="tns:ST_Genel_Sonuc" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ST_Genel_Sonuc">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="DT_Bilgi">
+            <s:complexType>
+              <s:sequence>
+                <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+              </s:sequence>
+            </s:complexType>
+          </s:element>
+          <s:element minOccurs="0" maxOccurs="1" name="Sonuc" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sonuc_Str" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="TP_Ozel_Oran_Liste">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="G" type="tns:ST_WS_Guvenlik" />
+            <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TP_Ozel_Oran_ListeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TP_Ozel_Oran_ListeResult" type="tns:ST_Genel_Sonuc" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TP_Ozel_Oran_SK_Liste">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="G" type="tns:ST_WS_Guvenlik" />
+            <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TP_Ozel_Oran_SK_ListeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TP_Ozel_Oran_SK_ListeResult" type="tns:ST_Genel_Sonuc" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TP_Ozel_Oran_SK_Guncelle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="G" type="tns:ST_WS_Guvenlik" />
+            <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Ozel_Oran_SK_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MO_1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MO_2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MO_3" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MO_4" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MO_5" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MO_6" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MO_7" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MO_8" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MO_9" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MO_10" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MO_11" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MO_12" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TP_Ozel_Oran_SK_GuncelleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TP_Ozel_Oran_SK_GuncelleResult" type="tns:ST_Sonuc" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ST_Sonuc">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Sonuc" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sonuc_Str" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="TP_Islem_Dekont_Gonder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="G" type="tns:ST_WS_Guvenlik" />
+            <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Dekont_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="E_Posta" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TP_Islem_Dekont_GonderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TP_Islem_Dekont_GonderResult" type="tns:ST_Sonuc" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TP_Islem_Odeme_WNS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="G" type="tns:ST_WS_Guvenlik" />
+            <s:element minOccurs="1" maxOccurs="1" name="SanalPOS_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="KK_Sahibi" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="KK_No" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="KK_SK_Ay" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="KK_SK_Yil" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="KK_CVC" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="KK_Sahibi_GSM" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Hata_URL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Basarili_URL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Siparis_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Siparis_Aciklama" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Taksit" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Islem_Tutar" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Toplam_Tutar" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Islem_Hash" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Islem_Guvenlik_Tip" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Islem_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IPAdr" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Ref_URL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Data1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Data2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Data3" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Data4" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Data5" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TP_Islem_Odeme_WNSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TP_Islem_Odeme_WNSResult" type="tns:ST_TP_Islem_Odeme" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ST_TP_Islem_Odeme">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Islem_ID" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="UCD_URL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sonuc" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sonuc_Str" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="TP_Islem_Odeme">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="G" type="tns:ST_WS_Guvenlik" />
+            <s:element minOccurs="1" maxOccurs="1" name="SanalPOS_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="KK_Sahibi" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="KK_No" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="KK_SK_Ay" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="KK_SK_Yil" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="KK_CVC" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="KK_Sahibi_GSM" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Hata_URL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Basarili_URL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Siparis_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Siparis_Aciklama" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Taksit" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Islem_Tutar" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Toplam_Tutar" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Islem_Hash" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Islem_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IPAdr" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Ref_URL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Data1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Data2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Data3" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Data4" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Data5" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TP_Islem_OdemeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TP_Islem_OdemeResult" type="tns:ST_TP_Islem_Odeme" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="KK_Saklama">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="G" type="tns:ST_WS_Guvenlik" />
+            <s:element minOccurs="0" maxOccurs="1" name="Kart_No" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="KK_Sahibi" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="KK_No" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="KK_SK_Ay" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="KK_SK_Yil" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="KK_CVV" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Data1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Data2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Data3" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="KK_SaklamaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KK_SaklamaResult" type="tns:ST_KK_Saklama" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ST_KK_Saklama">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sonuc" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sonuc_Str" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="KK_Sakli_Liste">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="G" type="tns:ST_WS_Guvenlik" />
+            <s:element minOccurs="0" maxOccurs="1" name="Kart_No" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="KS_KK_Kisi_ID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="KK_Sakli_ListeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KK_Sakli_ListeResult" type="tns:ST_Genel_Sonuc" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TP_Islem_Odeme_WKS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="G" type="tns:ST_WS_Guvenlik" />
+            <s:element minOccurs="1" maxOccurs="1" name="SanalPOS_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="KS_Kart_No" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="KK_GUID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="KK_Sahibi_GSM" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Hata_URL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Basarili_URL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Siparis_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Siparis_Aciklama" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Taksit" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Islem_Tutar" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Toplam_Tutar" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Islem_Hash" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Islem_Guvenlik_Tip" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Islem_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IPAdr" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Ref_URL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Data1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Data2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Data3" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Data4" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Data5" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TP_Islem_Odeme_WKSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TP_Islem_Odeme_WKSResult" type="tns:ST_TP_Islem_Odeme" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TP_Islem_Sorgulama">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="G" type="tns:ST_WS_Guvenlik" />
+            <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Dekont_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Siparis_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Islem_ID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TP_Islem_SorgulamaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TP_Islem_SorgulamaResult" type="tns:ST_Genel_Sonuc" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TP_Mutabakat_Ozet">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="G" type="tns:ST_WS_Guvenlik" />
+            <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tarih_Bas" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tarih_Bit" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TP_Mutabakat_OzetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TP_Mutabakat_OzetResult" type="tns:ST_Genel_Sonuc" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TP_Islem_Iptal_Iade">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="G" type="tns:ST_WS_Guvenlik" />
+            <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Durum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Dekont_ID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TP_Islem_Iptal_IadeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TP_Islem_Iptal_IadeResult" type="tns:ST_Sonuc" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TP_Islem_Iptal_Iade_Kismi">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="G" type="tns:ST_WS_Guvenlik" />
+            <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Durum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Dekont_ID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Tutar" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TP_Islem_Iptal_Iade_KismiResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TP_Islem_Iptal_Iade_KismiResult" type="tns:ST_Sonuc" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SHA2B64">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Data" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SHA2B64Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SHA2B64Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="BIN_SanalPosSoapIn">
+    <wsdl:part name="parameters" element="tns:BIN_SanalPos" />
+  </wsdl:message>
+  <wsdl:message name="BIN_SanalPosSoapOut">
+    <wsdl:part name="parameters" element="tns:BIN_SanalPosResponse" />
+  </wsdl:message>
+  <wsdl:message name="TP_Ozel_Oran_ListeSoapIn">
+    <wsdl:part name="parameters" element="tns:TP_Ozel_Oran_Liste" />
+  </wsdl:message>
+  <wsdl:message name="TP_Ozel_Oran_ListeSoapOut">
+    <wsdl:part name="parameters" element="tns:TP_Ozel_Oran_ListeResponse" />
+  </wsdl:message>
+  <wsdl:message name="TP_Ozel_Oran_SK_ListeSoapIn">
+    <wsdl:part name="parameters" element="tns:TP_Ozel_Oran_SK_Liste" />
+  </wsdl:message>
+  <wsdl:message name="TP_Ozel_Oran_SK_ListeSoapOut">
+    <wsdl:part name="parameters" element="tns:TP_Ozel_Oran_SK_ListeResponse" />
+  </wsdl:message>
+  <wsdl:message name="TP_Ozel_Oran_SK_GuncelleSoapIn">
+    <wsdl:part name="parameters" element="tns:TP_Ozel_Oran_SK_Guncelle" />
+  </wsdl:message>
+  <wsdl:message name="TP_Ozel_Oran_SK_GuncelleSoapOut">
+    <wsdl:part name="parameters" element="tns:TP_Ozel_Oran_SK_GuncelleResponse" />
+  </wsdl:message>
+  <wsdl:message name="TP_Islem_Dekont_GonderSoapIn">
+    <wsdl:part name="parameters" element="tns:TP_Islem_Dekont_Gonder" />
+  </wsdl:message>
+  <wsdl:message name="TP_Islem_Dekont_GonderSoapOut">
+    <wsdl:part name="parameters" element="tns:TP_Islem_Dekont_GonderResponse" />
+  </wsdl:message>
+  <wsdl:message name="TP_Islem_Odeme_WNSSoapIn">
+    <wsdl:part name="parameters" element="tns:TP_Islem_Odeme_WNS" />
+  </wsdl:message>
+  <wsdl:message name="TP_Islem_Odeme_WNSSoapOut">
+    <wsdl:part name="parameters" element="tns:TP_Islem_Odeme_WNSResponse" />
+  </wsdl:message>
+  <wsdl:message name="TP_Islem_OdemeSoapIn">
+    <wsdl:part name="parameters" element="tns:TP_Islem_Odeme" />
+  </wsdl:message>
+  <wsdl:message name="TP_Islem_OdemeSoapOut">
+    <wsdl:part name="parameters" element="tns:TP_Islem_OdemeResponse" />
+  </wsdl:message>
+  <wsdl:message name="KK_SaklamaSoapIn">
+    <wsdl:part name="parameters" element="tns:KK_Saklama" />
+  </wsdl:message>
+  <wsdl:message name="KK_SaklamaSoapOut">
+    <wsdl:part name="parameters" element="tns:KK_SaklamaResponse" />
+  </wsdl:message>
+  <wsdl:message name="KK_Sakli_ListeSoapIn">
+    <wsdl:part name="parameters" element="tns:KK_Sakli_Liste" />
+  </wsdl:message>
+  <wsdl:message name="KK_Sakli_ListeSoapOut">
+    <wsdl:part name="parameters" element="tns:KK_Sakli_ListeResponse" />
+  </wsdl:message>
+  <wsdl:message name="TP_Islem_Odeme_WKSSoapIn">
+    <wsdl:part name="parameters" element="tns:TP_Islem_Odeme_WKS" />
+  </wsdl:message>
+  <wsdl:message name="TP_Islem_Odeme_WKSSoapOut">
+    <wsdl:part name="parameters" element="tns:TP_Islem_Odeme_WKSResponse" />
+  </wsdl:message>
+  <wsdl:message name="TP_Islem_SorgulamaSoapIn">
+    <wsdl:part name="parameters" element="tns:TP_Islem_Sorgulama" />
+  </wsdl:message>
+  <wsdl:message name="TP_Islem_SorgulamaSoapOut">
+    <wsdl:part name="parameters" element="tns:TP_Islem_SorgulamaResponse" />
+  </wsdl:message>
+  <wsdl:message name="TP_Mutabakat_OzetSoapIn">
+    <wsdl:part name="parameters" element="tns:TP_Mutabakat_Ozet" />
+  </wsdl:message>
+  <wsdl:message name="TP_Mutabakat_OzetSoapOut">
+    <wsdl:part name="parameters" element="tns:TP_Mutabakat_OzetResponse" />
+  </wsdl:message>
+  <wsdl:message name="TP_Islem_Iptal_IadeSoapIn">
+    <wsdl:part name="parameters" element="tns:TP_Islem_Iptal_Iade" />
+  </wsdl:message>
+  <wsdl:message name="TP_Islem_Iptal_IadeSoapOut">
+    <wsdl:part name="parameters" element="tns:TP_Islem_Iptal_IadeResponse" />
+  </wsdl:message>
+  <wsdl:message name="TP_Islem_Iptal_Iade_KismiSoapIn">
+    <wsdl:part name="parameters" element="tns:TP_Islem_Iptal_Iade_Kismi" />
+  </wsdl:message>
+  <wsdl:message name="TP_Islem_Iptal_Iade_KismiSoapOut">
+    <wsdl:part name="parameters" element="tns:TP_Islem_Iptal_Iade_KismiResponse" />
+  </wsdl:message>
+  <wsdl:message name="SHA2B64SoapIn">
+    <wsdl:part name="parameters" element="tns:SHA2B64" />
+  </wsdl:message>
+  <wsdl:message name="SHA2B64SoapOut">
+    <wsdl:part name="parameters" element="tns:SHA2B64Response" />
+  </wsdl:message>
+  <wsdl:message name="SHA2B64HttpGetIn">
+    <wsdl:part name="Data" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SHA2B64HttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="TurkPos_x0020_WS_x0020_TESTSoap">
+    <wsdl:operation name="BIN_SanalPos">
+      <wsdl:input message="tns:BIN_SanalPosSoapIn" />
+      <wsdl:output message="tns:BIN_SanalPosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TP_Ozel_Oran_Liste">
+      <wsdl:input message="tns:TP_Ozel_Oran_ListeSoapIn" />
+      <wsdl:output message="tns:TP_Ozel_Oran_ListeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TP_Ozel_Oran_SK_Liste">
+      <wsdl:input message="tns:TP_Ozel_Oran_SK_ListeSoapIn" />
+      <wsdl:output message="tns:TP_Ozel_Oran_SK_ListeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TP_Ozel_Oran_SK_Guncelle">
+      <wsdl:input message="tns:TP_Ozel_Oran_SK_GuncelleSoapIn" />
+      <wsdl:output message="tns:TP_Ozel_Oran_SK_GuncelleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TP_Islem_Dekont_Gonder">
+      <wsdl:input message="tns:TP_Islem_Dekont_GonderSoapIn" />
+      <wsdl:output message="tns:TP_Islem_Dekont_GonderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TP_Islem_Odeme_WNS">
+      <wsdl:input message="tns:TP_Islem_Odeme_WNSSoapIn" />
+      <wsdl:output message="tns:TP_Islem_Odeme_WNSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TP_Islem_Odeme">
+      <wsdl:input message="tns:TP_Islem_OdemeSoapIn" />
+      <wsdl:output message="tns:TP_Islem_OdemeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="KK_Saklama">
+      <wsdl:input message="tns:KK_SaklamaSoapIn" />
+      <wsdl:output message="tns:KK_SaklamaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="KK_Sakli_Liste">
+      <wsdl:input message="tns:KK_Sakli_ListeSoapIn" />
+      <wsdl:output message="tns:KK_Sakli_ListeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TP_Islem_Odeme_WKS">
+      <wsdl:input message="tns:TP_Islem_Odeme_WKSSoapIn" />
+      <wsdl:output message="tns:TP_Islem_Odeme_WKSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TP_Islem_Sorgulama">
+      <wsdl:input message="tns:TP_Islem_SorgulamaSoapIn" />
+      <wsdl:output message="tns:TP_Islem_SorgulamaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TP_Mutabakat_Ozet">
+      <wsdl:input message="tns:TP_Mutabakat_OzetSoapIn" />
+      <wsdl:output message="tns:TP_Mutabakat_OzetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TP_Islem_Iptal_Iade">
+      <wsdl:input message="tns:TP_Islem_Iptal_IadeSoapIn" />
+      <wsdl:output message="tns:TP_Islem_Iptal_IadeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TP_Islem_Iptal_Iade_Kismi">
+      <wsdl:input message="tns:TP_Islem_Iptal_Iade_KismiSoapIn" />
+      <wsdl:output message="tns:TP_Islem_Iptal_Iade_KismiSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SHA2B64">
+      <wsdl:input message="tns:SHA2B64SoapIn" />
+      <wsdl:output message="tns:SHA2B64SoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="TurkPos_x0020_WS_x0020_TESTHttpGet">
+    <wsdl:operation name="SHA2B64">
+      <wsdl:input message="tns:SHA2B64HttpGetIn" />
+      <wsdl:output message="tns:SHA2B64HttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TurkPos_x0020_WS_x0020_TESTSoap" type="tns:TurkPos_x0020_WS_x0020_TESTSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="BIN_SanalPos">
+      <soap:operation soapAction="https://turkpos.com.tr/BIN_SanalPos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TP_Ozel_Oran_Liste">
+      <soap:operation soapAction="https://turkpos.com.tr/TP_Ozel_Oran_Liste" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TP_Ozel_Oran_SK_Liste">
+      <soap:operation soapAction="https://turkpos.com.tr/TP_Ozel_Oran_SK_Liste" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TP_Ozel_Oran_SK_Guncelle">
+      <soap:operation soapAction="https://turkpos.com.tr/TP_Ozel_Oran_SK_Guncelle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TP_Islem_Dekont_Gonder">
+      <soap:operation soapAction="https://turkpos.com.tr/TP_Islem_Dekont_Gonder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TP_Islem_Odeme_WNS">
+      <soap:operation soapAction="https://turkpos.com.tr/TP_Islem_Odeme_WNS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TP_Islem_Odeme">
+      <soap:operation soapAction="https://turkpos.com.tr/TP_Islem_Odeme" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="KK_Saklama">
+      <soap:operation soapAction="https://turkpos.com.tr/KK_Saklama" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="KK_Sakli_Liste">
+      <soap:operation soapAction="https://turkpos.com.tr/KK_Sakli_Liste" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TP_Islem_Odeme_WKS">
+      <soap:operation soapAction="https://turkpos.com.tr/TP_Islem_Odeme_WKS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TP_Islem_Sorgulama">
+      <soap:operation soapAction="https://turkpos.com.tr/TP_Islem_Sorgulama" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TP_Mutabakat_Ozet">
+      <soap:operation soapAction="https://turkpos.com.tr/TP_Mutabakat_Ozet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TP_Islem_Iptal_Iade">
+      <soap:operation soapAction="https://turkpos.com.tr/TP_Islem_Iptal_Iade" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TP_Islem_Iptal_Iade_Kismi">
+      <soap:operation soapAction="https://turkpos.com.tr/TP_Islem_Iptal_Iade_Kismi" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SHA2B64">
+      <soap:operation soapAction="https://turkpos.com.tr/SHA2B64" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TurkPos_x0020_WS_x0020_TESTSoap12" type="tns:TurkPos_x0020_WS_x0020_TESTSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="BIN_SanalPos">
+      <soap12:operation soapAction="https://turkpos.com.tr/BIN_SanalPos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TP_Ozel_Oran_Liste">
+      <soap12:operation soapAction="https://turkpos.com.tr/TP_Ozel_Oran_Liste" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TP_Ozel_Oran_SK_Liste">
+      <soap12:operation soapAction="https://turkpos.com.tr/TP_Ozel_Oran_SK_Liste" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TP_Ozel_Oran_SK_Guncelle">
+      <soap12:operation soapAction="https://turkpos.com.tr/TP_Ozel_Oran_SK_Guncelle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TP_Islem_Dekont_Gonder">
+      <soap12:operation soapAction="https://turkpos.com.tr/TP_Islem_Dekont_Gonder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TP_Islem_Odeme_WNS">
+      <soap12:operation soapAction="https://turkpos.com.tr/TP_Islem_Odeme_WNS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TP_Islem_Odeme">
+      <soap12:operation soapAction="https://turkpos.com.tr/TP_Islem_Odeme" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="KK_Saklama">
+      <soap12:operation soapAction="https://turkpos.com.tr/KK_Saklama" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="KK_Sakli_Liste">
+      <soap12:operation soapAction="https://turkpos.com.tr/KK_Sakli_Liste" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TP_Islem_Odeme_WKS">
+      <soap12:operation soapAction="https://turkpos.com.tr/TP_Islem_Odeme_WKS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TP_Islem_Sorgulama">
+      <soap12:operation soapAction="https://turkpos.com.tr/TP_Islem_Sorgulama" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TP_Mutabakat_Ozet">
+      <soap12:operation soapAction="https://turkpos.com.tr/TP_Mutabakat_Ozet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TP_Islem_Iptal_Iade">
+      <soap12:operation soapAction="https://turkpos.com.tr/TP_Islem_Iptal_Iade" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TP_Islem_Iptal_Iade_Kismi">
+      <soap12:operation soapAction="https://turkpos.com.tr/TP_Islem_Iptal_Iade_Kismi" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SHA2B64">
+      <soap12:operation soapAction="https://turkpos.com.tr/SHA2B64" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TurkPos_x0020_WS_x0020_TESTHttpGet" type="tns:TurkPos_x0020_WS_x0020_TESTHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="SHA2B64">
+      <http:operation location="/SHA2B64" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TurkPos_x0020_WS_x0020_TEST">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">TURK Elektronik Para A.Ş.</wsdl:documentation>
+    <wsdl:port name="TurkPos_x0020_WS_x0020_TESTSoap" binding="tns:TurkPos_x0020_WS_x0020_TESTSoap">
+      <soap:address location="http://dmzws.ew.com.tr/turkpos.ws/service_turkpos_test.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TurkPos_x0020_WS_x0020_TESTSoap12" binding="tns:TurkPos_x0020_WS_x0020_TESTSoap12">
+      <soap12:address location="http://dmzws.ew.com.tr/turkpos.ws/service_turkpos_test.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TurkPos_x0020_WS_x0020_TESTHttpGet" binding="tns:TurkPos_x0020_WS_x0020_TESTHttpGet">
+      <http:address location="http://dmzws.ew.com.tr/turkpos.ws/service_turkpos_test.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

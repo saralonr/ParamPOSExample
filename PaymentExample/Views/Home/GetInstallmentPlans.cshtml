@@ -1,0 +1,101 @@
+﻿@{
+    Layout = null;
+    decimal productPrice = ViewBag.Price;
+    System.Globalization.CultureInfo ci = new System.Globalization.CultureInfo("tr-TR");
+    int[] insArray = ViewBag.InstallmentArray;
+}
+@model DataTable
+<style>
+    table#paymentInstallmentTable th {
+        text-align: center;
+    }
+
+    table#paymentInstallmentTable td {
+        text-align: center;
+        font-size: 12px;
+    }
+
+    table.table-bordered > tbody > tr > th#noBorder {
+        border-top-color: white;
+        border-left-color: white;
+    }
+
+    .pd-top {
+        padding-top: 10px !important;
+    }
+</style>
+<div class="table-responsive">
+    <table class="table table-bordered table-condensed table-hover" id="paymentInstallmentTable">
+        <tbody>
+            @{
+                int index = 0;
+            }
+            @foreach (DataRow item in Model.Rows)
+            {
+                if (index == 0)
+                {
+                    <tr>
+                        <th id="noBorder"></th>
+                        <th>Tek Çekim</th>
+                        @for (int i = insArray[0]; i <= insArray[insArray.Length - 1]; i += 3)
+                        {
+                            <th>@i Taksit</th>
+                        }
+                    </tr>
+                }
+
+                <tr>
+                    <td>
+                        <img src="@item["Kredi_Karti_Banka_Gorsel"]" />
+                        <br />
+                        <b> @item["Kredi_Karti_Banka"]</b>
+                    </td>
+                    <td class="pd-top">
+                        @Html.Raw(productPrice.ToString("C", ci))
+                        <div class="clearfix"></div>
+                        <small><b>Toplam:</b> @Html.Raw(productPrice.ToString("C", ci))</small>
+                    </td>
+
+                    @for (int i = insArray[0]; i <= insArray[insArray.Length - 1]; i += 3)
+                    {
+                        if (i < 10)
+                        {
+                            <td class="pd-top">
+                                @if (((decimal)item["MO_0" + i]) > 0)
+                                {
+                                    decimal total = productPrice + ((productPrice * ((decimal)item["MO_0" + i])) / 100);
+                                    @Html.Raw(i+" x "+ Convert.ToDecimal(total / i).ToString("C", ci))
+                                    <div class="clearfix"></div>
+                                    <small><b>Toplam:</b> @Html.Raw(total.ToString("C", ci))</small>
+                                }
+                                else
+                                {
+                                    @Html.Raw("-")
+                                }
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="pd-top">
+                                @if (((decimal)item["MO_" + i]) > 0)
+                                {
+                                    decimal total = productPrice + ((productPrice * ((decimal)item["MO_" + i])) / 100);
+                                    @Html.Raw(i + " x " + Convert.ToDecimal(total / i).ToString("C", ci))
+                                    <div class="clearfix"></div>
+                                    <small><b>Toplam:</b> @Html.Raw(total.ToString("C", ci))</small>
+                                }
+                                else
+                                {
+                                    @Html.Raw("-")
+                                }
+                            </td>
+                        }
+
+                    }
+                </tr>
+
+                index++;
+            }
+        </tbody>
+    </table>
+</div>

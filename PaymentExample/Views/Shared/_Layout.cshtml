@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - ParamPOS Entegrasyon Örneği</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.4.1/css/all.css' integrity='sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz' crossorigin='anonymous' />
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("ParamPOS Entegrasyon Örneği", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Anasayfa", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Ödeme Sayfası", "Payment", "Home")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - ParamPOS Entegrasyon Örneği</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+
+    <script>
+        // BACK-END'TE ENTİTY'SİNİ OLUŞTURDUĞUMUZ PaymentItem'i OKUNURLUĞU VE ANLAŞILMASINI ARTIRMAK, AYRICA DAHA RAHAT İŞLEM YAPMAK İÇİN YENİDEN OLUŞTURDUK.
+        function PaymentItem(cardNumber, cardMonthYear, securityCode, cardOwner, installment, ozelOranSKID) {
+            this.CardNumber = cardNumber;
+            this.CardMonthYear = cardMonthYear;
+            this.SecurityCode = securityCode;
+            this.CardOwner = cardOwner;
+            this.Installment = installment;
+            this.Ozel_Oran_SK_ID = ozelOranSKID;
+        }
+        // YİNE AYNI ŞEKİLDE ENUMLARI BURADA DA OLUŞTURDUK.
+        var PaymentStatus = {
+            Success: 1,
+            Error: -1,
+            Fail : -2
+        };
+        var isLoadInstallment = false;
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#installmentPlanArea").load("/Home/GetInstallmentPlans");
+        });
+        function FillInputs() {
+            // BİLGİLERİ HIZLICA DOLDURMAK İÇİN HAZIRLANDI. BUTON DEVREDIŞI BIRAKILDI.
+            $("#name").val("Onur Saral");
+            $("#cardnumber").val("4444 4444 4444 4444");
+            $("#expirationdate").val("04/20");
+            $("#securitycode").val("444");
+        }
+        $('[data-submit="PaymentForm"]').click(function () {
+            $('[data-submit="PaymentForm"]').attr("disabled","disabled"); 
+            // FORM POST İÇİN HAZIRLANIYOR, POST EDİLİYOR. ÖN TARAFTA VALIDATION YAPILMADI.
+            $form = $('[data-form="PaymentForm"]');
+            var cardNumber = $form.find("[name=CardNumber]").val();
+            var cardMonthYear = $form.find("[name=CardMonthYear]").val();
+            var securityCode = $form.find("[name=SecurityCode]").val();
+            var cardOwner = $form.find("[name=CardOwner]").val();
+            var installment = $("[data-id='Installment']").val();
+            
+            var paymentObject = new PaymentItem(cardNumber, cardMonthYear, securityCode, cardOwner, installment);
+            console.log(paymentObject);
+            $.ajax({
+                url: "/Home/Payment",
+                method: "POST",
+                data: paymentObject,
+                type: "application/json",
+                async: true,
+                success: function (result) {
+                    $('[data-submit="PaymentForm"]').removeAttr("disabled"); 
+                    if (result.Status === PaymentStatus.Success) {
+                        $("body").html("");
+                        $("body").css("display", "none");
+                        $("body").html('<div style="margin-top:300px;font-weight:bold;"><center><a href="' + result.URL + '" style="color:#000">' + result.Message + '</a></center></div>');
+                        $("body").fadeIn(750);
+                        setTimeout(function () {
+                            window.location.href = result.URL;
+                        }, 2500);
+                    }
+                    else {
+                        $('[data-alert="error"]').find('[data-result="true"]').html(result.Message);
+                        $('[data-alert="error"]').slideDown();
+                    }
+                }
+            });
+        });
+        $('[name=CardNumber]').on("change keyup blur keydown", function () {
+            var cardNumber = $(this);
+            var cardNumberVal = cardNumber.val().replace(" ", "");
+            if (cardNumberVal.length >= 6 && isLoadInstallment === false) {
+                // EĞER DAHA ÖNCE TAKSİT SEÇENEKLERİ LİSTELENMİŞSE GetInstallmentPlanSingle TEKRAR ÇAĞIRILMAZ. //
+                isLoadInstallment = true;
+
+                $.ajax({
+                    url: "/Home/GetInstallmentPlanSingle",
+                    data: { cardNumber: cardNumberVal },
+                    method: "GET",
+                    type: "application/json",
+                    async: true,
+                    success: function (result) {
+                        $('[data-id="InstallmentPlans"]').find("select").html("");
+                        $.each(result, function (i, v) {
+                            if (v.InstallmentNumber == 1) {
+                                // İLK TAKSİT SEÇENEĞİ İSE - TEK ÇEKİM //
+                                $('[data-id="InstallmentPlans"]').find("select").append('<option data-selectedPrice="' + v.InstallmentTotalPrice +'" value="' + v.InstallmentCr + '"> Tek Çekim - ' + v.InstallmentPrice + ' * ' + v.InstallmentNumber + ' - ' + v.InstallmentTotalPrice + ' TL Toplam Tutar</option>');
+                            }
+                            else {
+                                // 2-12 TAKSİT ARASI //
+                                $('[data-id="InstallmentPlans"]').find("select").append('<option data-selectedPrice="' + v.InstallmentTotalPrice+'" value="' + v.InstallmentCr + '"> ' + v.InstallmentNumber + ' Taksit - ' + v.InstallmentPrice + ' * ' + v.InstallmentNumber + ' - ' + v.InstallmentTotalPrice + ' TL Toplam Tutar</option>');
+                            }
+                        });
+                        $('[data-id="InstallmentPlans"]').slideDown(); // TAKSİT SEÇENEKLERİNİ LİSTELİYORUZ. //
+                        $('[data-submit="PaymentForm"]').removeAttr("disabled");  // ÖDEME BUTONU TAKSİT SEÇENEĞİ SEÇİLENE KADAR YANİ KART BİLGİLERİ GİRİLENE KADAR DEAKTİF İDİ. //
+                        
+                        $('[data-id="TotalPrice"]').html(result[0].InstallmentTotalPrice); // 1 TAKSİT - TEK ÇEKİM SEÇENEĞİNİN KOMİSYON DAHİL TOPLAM TUTARI //
+                    }
+                });
+            }
+            else if (cardNumberVal.length < 6 && isLoadInstallment === true) {
+                // KART NUMARASI 6'DAN AZSA isLoadInstallment TEKRAR FALSE'A ÇEKİLİR. KİŞİ KART NUMARASINI YANLIŞ YAZMIŞ YA DA KART DEĞİŞTİRMEK İSTİYOR OLABİLİR.
+                isLoadInstallment = false;
+                $('[data-id="InstallmentPlans"]').slideUp();
+                $('[data-submit="PaymentForm"]').attr("disabled","disabled");
+            }
+        });
+        function SelectInstallment(e) {
+            // TOPLAM TUTAR HER FARKLI TAKSİT SEÇENEĞİNDE DEĞİŞTİĞİ İÇİN YENİDEN YANSITILIR.
+            var totalPrice = $(e).find('option:selected').attr('data-selectedPrice');
+            $('[data-id="TotalPrice"]').fadeOut(250);
+            $('[data-id="TotalPrice"]').html("");
+            $('[data-id="TotalPrice"]').fadeIn(500);
+            $('[data-id="TotalPrice"]').html(totalPrice);
+        }
+    </script>
+</body>
+</html>
